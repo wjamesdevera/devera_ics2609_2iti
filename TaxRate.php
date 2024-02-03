@@ -1,11 +1,10 @@
 <?php
 class TaxRate
 {
-    public $hasMax = false;
-    public $hasMin = false;
-    public $hasBasicAmount = false;
-    public $hasAdditionalRateInPercent = false;
-    public $hasExcessOver = false;
+    private $hasMax = false;
+    private $hasBasicAmount = false;
+    private $hasAdditionalRateInPercent = false;
+    private $hasExcessOver = false;
     private $maxRange;
     private $minRange;
     private $basicAmount;
@@ -50,7 +49,6 @@ class TaxRate
     function setMaxRange($maxRange)
     {
         if ($maxRange >= 0) {
-            $this->hasMax = true;
             $this->maxRange = $maxRange;
         } else {
             $this->hasMax = PHP_INT_MAX;
@@ -59,9 +57,6 @@ class TaxRate
 
     function setMinRange($minRange)
     {
-        if ($minRange >= 0) {
-            $this->hasMin = true;
-        }
         $this->minRange = $minRange;
     }
 
@@ -93,5 +88,16 @@ class TaxRate
         } else {
             $this->excessOver = PHP_FLOAT_MIN;
         }
+    }
+
+    // access functions
+    function hasMin()
+    {
+        return ($this->minRange >= 0);
+    }
+
+    function hasMax()
+    {
+        return $this->maxRange >= 0;
     }
 }
