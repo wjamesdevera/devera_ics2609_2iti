@@ -72,7 +72,7 @@ class TaxCalculator
 
     private function calculateExcessOver($annualSalary)
     {
-        return ($this->taxRate->hasExcessOver()) ? $annualSalary - $this->taxRate->getExcessOver() : $annualSalary;
+        return ($this->taxRate->hasExcessOver()) ? $annualSalary - $this->taxRate->getExcessOver() : 0;
     }
 
     private function calculateAdditionalRateInPercent($excessOver)
