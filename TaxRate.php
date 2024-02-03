@@ -48,11 +48,7 @@ class TaxRate
 
     function setMaxRange($maxRange)
     {
-        if ($maxRange >= 0) {
-            $this->maxRange = $maxRange;
-        } else {
-            $this->hasMax = PHP_INT_MAX;
-        }
+        $this->maxRange = ($maxRange >= 0) ? $maxRange : PHP_FLOAT_MAX;
     }
 
     function setMinRange($minRange)
