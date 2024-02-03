@@ -1,0 +1,19 @@
+/* 
+    Define base styles for HTML elements (e.g., body, headings, paragraphs).
+*/
+@import 'typography';
+
+body {
+    font-family: $open-sans;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F4;
+}
+
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    padding: 1rem;
+}

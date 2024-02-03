@@ -1,0 +1,16 @@
+@use 'normalize';
+@use 'variables';
+@use 'base';
+@use 'typography';
+@use 'forms';
+
+.side-pad {
+    margin-inline: auto;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}

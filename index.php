@@ -4,15 +4,47 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/main.css">
+    <title>Taxxy: Tax Calculator</title>
 </head>
 
 <body>
-    <h1>Hello, Taxxy</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <header>
+    </header>
+    <main class="">
+        <form action="" method="post">
+            <div class="form-title">
+                <h2>Taxxy: Tax Calculator.</h2>
+                <p>Enter salary to calculate taxes instantly!</p>
+            </div>
+            <div class="form-input">
+                <input type="number" name="monthly_salary" placeholder="Monthly Salary" autocomplete="off" autocapitalize="off">
+            </div>
+            <fieldset>
+                <legend>
+                    <p>Type</p>
+                </legend>
+                <div class="input-radio form-input">
+                    <label for="monthly" class="radio">
+                        <input type="radio" name="bi_monthly" id="monthly" value="monthly">
+                        <div class="radio__radio"></div>
+                        Monthly
+                    </label>
+                    <label for="bi-monthly" class="radio">
+                        <input type="radio" name="bi_monthly" id="bi-monthly" value="bi-monthly">
+                        <div class="radio__radio"></div>
+                        Bi-Monthly
+                    </label>
+                </div>
+            </fieldset>
+            <div class="form-submit">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </main>
+    <footer>
+        <small>Copyright &copy; <?= date('Y') ?> De Vera</small>
+    </footer>
 </body>
 
 </html>
