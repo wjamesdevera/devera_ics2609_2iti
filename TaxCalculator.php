@@ -55,6 +55,7 @@ class TaxCalculator
         }
     }
 
+    // Calculator Functions
     private function calculateAnnualTax()
     {
         $excessOver = $this->calculateExcessOver($this->annualSalary);
@@ -63,6 +64,7 @@ class TaxCalculator
 
         return $basicAmount;
     }
+
     private function calculateMonthlyTax(): float
     {
         return $this->annualTax / 12;
@@ -90,27 +92,27 @@ class TaxCalculator
         $this->monthlySalary = $monthlySalary;
     }
 
-    public function setAnnualSalary($monthlySalary)
+    private function setAnnualSalary($monthlySalary)
     {
         $this->annualSalary = ($this->isBiMonthly ? ($monthlySalary * 24) : ($monthlySalary * 12));
     }
 
-    private function setTaxRate()
+    private function setTaxRate(): void
     {
         $this->taxRate = $this->findTaxRate($this->annualSalary);
     }
 
-    private function setAnnualTax()
+    private function setAnnualTax(): void
     {
         $this->annualTax = $this->calculateAnnualTax();
     }
 
-    public function setMonthlyTax()
+    private function setMonthlyTax(): void
     {
         $this->monthlyTax = $this->calculateMonthlyTax();
     }
 
-    public function setIsBiMonthly($isBiMonthly)
+    public function setIsBiMonthly($isBiMonthly): void
     {
         $this->isBiMonthly = $isBiMonthly;
     }
@@ -118,32 +120,32 @@ class TaxCalculator
 
     // GETTERS
 
-    function getAnnualSalary()
+    public function getAnnualSalary(): string
     {
         return number_format($this->annualSalary, 2);
     }
 
-    function getMonthlySalary()
+    public function getMonthlySalary(): string
     {
         return number_format($this->monthlySalary, 2);
     }
 
-    function getAnnualTax()
+    public function getAnnualTax(): string
     {
         return number_format($this->annualTax, 2);
     }
 
-    function getMonthlyTax()
+    public function getMonthlyTax(): string
     {
         return number_format($this->monthlyTax, 2);
     }
 
-    function getTaxRate()
+    protected function getTaxRate(): TaxRate
     {
         return $this->taxRate;
     }
 
-    function getTaxRates()
+    protected function getTaxRates(): array
     {
         return $this->taxRates;
     }
