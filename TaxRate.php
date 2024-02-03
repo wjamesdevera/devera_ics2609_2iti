@@ -1,9 +1,6 @@
 <?php
 class TaxRate
 {
-    private $hasBasicAmount = false;
-    private $hasAdditionalRateInPercent = false;
-    private $hasExcessOver = false;
     private $maxRange;
     private $minRange;
     private $basicAmount;
@@ -93,6 +90,6 @@ class TaxRate
 
     public function hasBasicAmount(): bool
     {
-        return $this->hasBasicAmount > 0;
+        return $this->basicAmount > 0;
     }
 }
