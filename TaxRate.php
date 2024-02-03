@@ -57,42 +57,42 @@ class TaxRate
 
     public function setBasicAmount($basicAmount)
     {
-        if ($basicAmount > 0) {
-            $this->hasBasicAmount = true;
-            $this->basicAmount = $basicAmount;
-        } else {
-            $this->basicAmount = PHP_FLOAT_MIN;
-        }
+        $this->basicAmount = ($basicAmount >= PHP_FLOAT_MIN) ? $basicAmount : PHP_FLOAT_MIN;
     }
 
     public function setAdditionalRate($additionalRateInPercent)
     {
-        if ($additionalRateInPercent > PHP_FLOAT_MIN) {
-            $this->hasAdditionalRateInPercent = true;
-            $this->additionalRateInPercent = $additionalRateInPercent;
-        } else {
-            $this->additionalRateInPercent = PHP_FLOAT_MIN;
-        }
+        $this->additionalRateInPercent = ($additionalRateInPercent >= PHP_FLOAT_MIN) ? $additionalRateInPercent : PHP_FLOAT_MIN;
     }
 
-    public function setExcessOver($excessOver)
+    public function setExcessOver($excessOver): void
     {
-        if ($excessOver > PHP_FLOAT_MIN) {
-            $this->hasExcessOver = true;
-            $this->excessOver = $excessOver;
-        } else {
-            $this->excessOver = PHP_FLOAT_MIN;
-        }
+        $this->excessOver = ($excessOver > PHP_FLOAT_MIN) ? $excessOver : PHP_FLOAT_MIN;
     }
 
     // access functions
-    public function hasMin()
+    public function hasMin(): bool
     {
         return ($this->minRange >= 0);
     }
 
-    public function hasMax()
+    public function hasMax(): bool
     {
         return $this->maxRange >= 0;
+    }
+
+    public function hasExcessOver(): bool
+    {
+        return $this->excessOver > PHP_FLOAT_MIN;
+    }
+
+    public function hasAdditionalRate(): bool
+    {
+        return $this->additionalRateInPercent > PHP_FLOAT_MIN;
+    }
+
+    public function hasBasicAmount(): bool
+    {
+        return $this->hasBasicAmount > 0;
     }
 }
