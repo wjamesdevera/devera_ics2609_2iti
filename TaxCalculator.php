@@ -50,7 +50,7 @@ class TaxCalculator
 
     private function initializeTaxRates()
     {
-        foreach(self::TAX_RATES as $taxRate) {
+        foreach (self::TAX_RATES as $taxRate) {
             $this->taxRates[] = new TaxRate($taxRate['min_range'], $taxRate['max_range'], $taxRate['basic_amount'], $taxRate['additional_rate_in_percent'], $taxRate['excess_over']);
         }
     }
