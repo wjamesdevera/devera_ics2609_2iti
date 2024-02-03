@@ -12,7 +12,7 @@
     <header>
     </header>
     <main class="">
-        <form action="" method="post">
+        <form action="calculate_tax.php" method="POST">
             <div class="form-title">
                 <h2>Taxxy: Tax Calculator.</h2>
                 <p>Enter salary to calculate taxes instantly!</p>
