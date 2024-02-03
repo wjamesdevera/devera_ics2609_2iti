@@ -1,7 +1,5 @@
 <?php
 
-use Random\Engine\Mt19937;
-
 require_once 'TaxRate.php';
 
 class TaxCalculator
