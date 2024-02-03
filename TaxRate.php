@@ -1,7 +1,6 @@
 <?php
 class TaxRate
 {
-    private $hasMax = false;
     private $hasBasicAmount = false;
     private $hasAdditionalRateInPercent = false;
     private $hasExcessOver = false;
@@ -12,7 +11,7 @@ class TaxRate
     private $excessOver;
 
 
-    function __construct($minRange = 0, $maxRange = 0, $basicAmount = 0, $additionalRateInPercent = 0, $excessOver = 0)
+    public function __construct($minRange = 0, $maxRange = 0, $basicAmount = 0, $additionalRateInPercent = 0, $excessOver = 0)
     {
         $this->setMinRange($minRange);
         $this->setMaxRange($maxRange);
@@ -21,42 +20,42 @@ class TaxRate
         $this->setExcessOver($excessOver);
     }
 
-    function getMaxRange()
+    public function getMaxRange()
     {
         return $this->maxRange;
     }
 
-    function getMinRange()
+    public function getMinRange()
     {
         return $this->minRange;
     }
 
-    function getBasicAmount()
+    public function getBasicAmount()
     {
         return $this->basicAmount;
     }
 
-    function getAdditionalRate()
+    public function getAdditionalRate()
     {
         return $this->additionalRateInPercent;
     }
 
-    function getExcessOver()
+    public function getExcessOver()
     {
         return $this->excessOver;
     }
 
-    function setMaxRange($maxRange)
+    public function setMaxRange($maxRange)
     {
         $this->maxRange = ($maxRange >= 0) ? $maxRange : PHP_FLOAT_MAX;
     }
 
-    function setMinRange($minRange)
+    public function setMinRange($minRange)
     {
         $this->minRange = $minRange;
     }
 
-    function setBasicAmount($basicAmount)
+    public function setBasicAmount($basicAmount)
     {
         if ($basicAmount > 0) {
             $this->hasBasicAmount = true;
@@ -66,7 +65,7 @@ class TaxRate
         }
     }
 
-    function setAdditionalRate($additionalRateInPercent)
+    public function setAdditionalRate($additionalRateInPercent)
     {
         if ($additionalRateInPercent > PHP_FLOAT_MIN) {
             $this->hasAdditionalRateInPercent = true;
@@ -76,7 +75,7 @@ class TaxRate
         }
     }
 
-    function setExcessOver($excessOver)
+    public function setExcessOver($excessOver)
     {
         if ($excessOver > PHP_FLOAT_MIN) {
             $this->hasExcessOver = true;
@@ -87,12 +86,12 @@ class TaxRate
     }
 
     // access functions
-    function hasMin()
+    public function hasMin()
     {
         return ($this->minRange >= 0);
     }
 
-    function hasMax()
+    public function hasMax()
     {
         return $this->maxRange >= 0;
     }
