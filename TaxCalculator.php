@@ -4,7 +4,14 @@ require_once 'TaxRate.php';
 
 class TaxCalculator
 {
-
+    private const TAX_RATES = array(
+        array('min_range' => 0, 'max_range' => 250_000, 'basic_amount' => 0, 'additional_rate_in_percent' => 0, 'excess_over' => 0),
+        array('min_range' => 0, 'max_range' => 400_000, 'basic_amount' => 0, 'additional_rate_in_percent' => .2, 'excess_over' => 250_000),
+        array('min_range' => 400_000, 'max_range' => 800_000, 'basic_amount' => 22_500, 'additional_rate_in_percent' => .25, 'excess_over' => 400_000),
+        array('min_range' => 800_000, 'max_range' => 2_000_000, 'basic_amount' => 102_500, 'additional_rate_in_percent' => .3, 'excess_over' => 800_000),
+        array('min_range' => 2_000_000, 'max_range' => 8_000_000, 'basic_amount' => 402_500, 'additional_rate_in_percent' => .32, 'excess_over' => 2_000_000),
+        array('min_range' => 8_000_000, 'max_range' => 0, 'basic_amount' => 2_202_500, 'additional_rate_in_percent' => .35, 'excess_over' => 8_000_000),
+    );
     private $monthlySalary;
     private $annualSalary;
     private $isBiMonthly;
@@ -17,12 +24,17 @@ class TaxCalculator
     function __construct($monthlySalary, $isBiMonthly = false)
     {
         $this->initializeTaxRates();
-        $this->isBiMonthly = $isBiMonthly;
-        $this->monthlySalary = $monthlySalary;
-        $this->setAnnualSalary($monthlySalary);
-        $this->taxRate = $this->findTaxRate($this->annualSalary);
+        $this->setIsBiMonthly($isBiMonthly);
+        $this->initializeSalary($monthlySalary);
+        $this->setTaxRate();
         $this->setAnnualTax();
         $this->setMonthlyTax();
+    }
+
+    function initializeSalary($monthlySalary)
+    {
+        $this->setMonthlySalary($monthlySalary);
+        $this->setAnnualSalary($monthlySalary);
     }
 
     function findTaxRate($annualSalary)
@@ -35,31 +47,12 @@ class TaxCalculator
         return null;
     }
 
-    function setAnnualSalary($monthlySalary)
-    {
-        $this->annualSalary = ($this->isBiMonthly ? ($monthlySalary * 24) : ($monthlySalary * 12));
-    }
-
-    function setAnnualTax()
-    {
-        $this->annualTax = $this->calculateAnnualTax();
-    }
-
-    function setMonthlyTax()
-    {
-        $this->monthlyTax = $this->calculateMonthlyTax();
-    }
 
     private function initializeTaxRates()
     {
-        $this->taxRates = [
-            new TaxRate(0, 250000, 0, 0, 0),
-            new TaxRate(250000, 400000, 0, .2, 250000),
-            new TaxRate(400_000, 800_000, 22_500, .25, 400_000),
-            new TaxRate(800_000, 2_000_000, 102_500, .3, 800_000),
-            new TaxRate(2_000_000, 8_000_000, 402_500, .32, 2_000_000),
-            new TaxRate(8_000_000, 0, 2_202_500, .35, 8_000_000)
-        ];
+        foreach(self::TAX_RATES as $taxRate) {
+            $this->taxRates[] = new TaxRate($taxRate['min_range'], $taxRate['max_range'], $taxRate['basic_amount'], $taxRate['additional_rate_in_percent'], $taxRate['excess_over']);
+        }
     }
 
     private function calculateAnnualTax()
@@ -75,31 +68,55 @@ class TaxCalculator
         return $this->annualTax / 12;
     }
 
-
-    private function calculateExcessOver($salary)
+    private function calculateExcessOver($annualSalary)
     {
-        if ($this->taxRate->hasExcessOver) {
-            return $salary - $this->taxRate->getExcessOver();
-        }
-        return $salary;
+        return ($this->taxRate->hasExcessOver()) ? $annualSalary - $this->taxRate->getExcessOver() : $annualSalary;
     }
 
-    private function calculateAdditionalRateInPercent($salary)
+    private function calculateAdditionalRateInPercent($excessOver)
     {
-        if ($this->taxRate->hasAdditionalRateInPercent) {
-            return $salary * $this->taxRate->getAdditionalRate();
-        }
-        return $salary;
+        return ($this->taxRate->hasAdditionalRate()) ? $excessOver * $this->taxRate->getAdditionalRate() : $excessOver;
     }
 
-    private function calculateBasicAmount($salary)
+    private function calculateBasicAmount($additionalRate)
     {
-        require_once 'TaxRate.php';
-        if ($this->taxRate->hasBasicAmount) {
-            return $salary + $this->taxRate->getBasicAmount();
-        }
-        return $salary;
+        return ($this->taxRate->hasBasicAmount()) ? $additionalRate + $this->taxRate->getBasicAmount() : $additionalRate;
     }
+
+    // SETTERS
+
+    public function setMonthlySalary($monthlySalary)
+    {
+        $this->monthlySalary = $monthlySalary;
+    }
+
+    public function setAnnualSalary($monthlySalary)
+    {
+        $this->annualSalary = ($this->isBiMonthly ? ($monthlySalary * 24) : ($monthlySalary * 12));
+    }
+
+    private function setTaxRate()
+    {
+        $this->taxRate = $this->findTaxRate($this->annualSalary);
+    }
+
+    private function setAnnualTax()
+    {
+        $this->annualTax = $this->calculateAnnualTax();
+    }
+
+    public function setMonthlyTax()
+    {
+        $this->monthlyTax = $this->calculateMonthlyTax();
+    }
+
+    public function setIsBiMonthly($isBiMonthly)
+    {
+        $this->isBiMonthly = $isBiMonthly;
+    }
+
+
+    // GETTERS
 
     function getAnnualSalary()
     {
