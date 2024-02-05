@@ -29,7 +29,6 @@ class TaxCalculator
     // TODO: Function for sorting TaxRates
     function calculateTax($monthlySalary, $isBiMonthly = false): array
     {
-        $this->initializeTaxRates();
         $this->setIsBiMonthly($isBiMonthly);
         $this->initializeSalary($monthlySalary);
         $this->setTaxRate();
@@ -44,13 +43,13 @@ class TaxCalculator
         );
     }
 
-    function initializeSalary($monthlySalary)
+    function initializeSalary($monthlySalary): void
     {
         $this->setMonthlySalary($monthlySalary);
         $this->setAnnualSalary($monthlySalary);
     }
 
-    function findTaxRate($annualSalary)
+    function findTaxRate($annualSalary): ?TaxRate
     {
         foreach ($this->taxRates as $taxRate) {
             if ($taxRate->getMinRange() < $annualSalary && $taxRate->getMaxRange() > $annualSalary) {
@@ -61,7 +60,7 @@ class TaxCalculator
     }
 
 
-    private function initializeTaxRates()
+    private function initializeTaxRates(): void
     {
         foreach (self::TAX_RATES as $taxRate) {
             $this->taxRates[] = new TaxRate($taxRate['min_range'], $taxRate['max_range'], $taxRate['basic_amount'], $taxRate['additional_rate_in_percent'], $taxRate['excess_over']);
@@ -69,7 +68,7 @@ class TaxCalculator
     }
 
     // Calculator Functions
-    private function calculateAnnualTax()
+    private function calculateAnnualTax(): float
     {
         $excessOver = $this->calculateExcessOver($this->annualSalary);
         $additionalRate = $this->calculateAdditionalRateInPercent($excessOver);
@@ -83,29 +82,29 @@ class TaxCalculator
         return $this->annualTax / 12;
     }
 
-    private function calculateExcessOver($annualSalary)
+    private function calculateExcessOver($annualSalary): float
     {
         return ($this->taxRate->hasExcessOver()) ? $annualSalary - $this->taxRate->getExcessOver() : 0;
     }
 
-    private function calculateAdditionalRateInPercent($excessOver)
+    private function calculateAdditionalRateInPercent($excessOver): float
     {
         return ($this->taxRate->hasAdditionalRate()) ? $excessOver * $this->taxRate->getAdditionalRate() : $excessOver;
     }
 
-    private function calculateBasicAmount($additionalRate)
+    private function calculateBasicAmount($additionalRate): float
     {
         return ($this->taxRate->hasBasicAmount()) ? $additionalRate + $this->taxRate->getBasicAmount() : $additionalRate;
     }
 
     // SETTERS
 
-    public function setMonthlySalary($monthlySalary)
+    public function setMonthlySalary($monthlySalary): void
     {
         $this->monthlySalary = $monthlySalary;
     }
 
-    private function setAnnualSalary($monthlySalary)
+    private function setAnnualSalary($monthlySalary): void
     {
         $this->annualSalary = ($this->isBiMonthly ? ($monthlySalary * 24) : ($monthlySalary * 12));
     }
