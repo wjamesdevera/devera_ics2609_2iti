@@ -7,31 +7,16 @@ if (isPostRequest()) {
     $monthlySalary = sanitizeInput($_POST["monthly_salary"]);
     $isBiMonthly = isBiMonthly(sanitizeInput($_POST["bi_monthly"]));
 
-    $taxCalculator = new TaxCalculator($monthlySalary, $isBiMonthly);
+    $taxCalculator = new TaxCalculator();
+    // TODO: Create Form Validation
 
-    $_SESSION['result'] = array(
-        'monthly_salary' => $taxCalculator->getMonthlySalary(),
-        'annual_salary' => $taxCalculator->getAnnualSalary(),
-        'annual_tax' => $taxCalculator->getAnnualTax(),
-        'monthly_tax' => $taxCalculator->getMonthlyTax(),
-    );
+    $_SESSION['result'] = $taxCalculator->calculateTax($monthlySalary, $isBiMonthly);
     header("location: index.php");
     die();
 } else {
     header("location: index.php");
     die();
 }
-?>
-<?= 'Monthly Salary: ' . $taxCalculator->getMonthlySalary() ?>
-<br>
-<?= 'Annual Salary: ' . $taxCalculator->getAnnualSalary() ?>
-<br>
-<?= 'Est. Annual Tax: ' . $taxCalculator->getAnnualTax() ?>
-<br>
-<?= 'Est. Monthly Tax: ' . $taxCalculator->getMonthlyTax() ?>
-<br>
-
-<?php
 
 function isPostRequest(): bool
 {

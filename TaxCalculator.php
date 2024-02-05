@@ -20,8 +20,14 @@ class TaxCalculator
     private $monthlyTax;
     private $taxRates;
 
+    function __construct()
+    {
+        $this->initializeTaxRates();
+        $this->setTaxRate();
+    }
 
-    function __construct($monthlySalary, $isBiMonthly = false)
+    // TODO: Function for sorting TaxRates
+    function calculateTax($monthlySalary, $isBiMonthly = false): array
     {
         $this->initializeTaxRates();
         $this->setIsBiMonthly($isBiMonthly);
@@ -29,6 +35,13 @@ class TaxCalculator
         $this->setTaxRate();
         $this->setAnnualTax();
         $this->setMonthlyTax();
+
+        return array(
+            "monthly_salary" => $this->getMonthlySalary(),
+            "annual_salary" => $this->getAnnualSalary(),
+            "annual_tax" => $this->getAnnualSalary(),
+            "monthly_tax" => $this->getAnnualSalary(),
+        );
     }
 
     function initializeSalary($monthlySalary)

@@ -12,7 +12,6 @@ session_start();
     <link rel="stylesheet" href="./static/css/main.css">
     <title>Taxxy: Tax Calculator</title>
 </head>
-
 <body>
     <header>
     </header>
@@ -26,26 +25,28 @@ session_start();
                 <h2>Tax Computation:</h2>
                 <div class="">
                     <p>Monthly Salary:
-                        <?= $result['monthly_salary'] ?>
+                        <?= '&#8369; ' . $result['monthly_salary'] ?>
                     </p>
                     <p>
                         Annual Salary:
-                        <?= $result['annual_salary'] ?>
+                        <?= '&#8369; ' . $result['annual_salary'] ?>
                     </p>
                     <p>
                         Estimated Annual Tax:
-                        <?= $result['annual_tax'] ?>
+                        <?= '&#8369; ' . $result['annual_tax'] ?>
+                    </p>
                     </p>
                     <p>
                         Estimated Monthly Tax:
-                        <?= $result['monthly_tax'] ?>
+                        <?= '&#8369; ' . $result['monthly_tax'] ?>
                     </p>
                 </div>
             </div>
+            <?php unset($_SESSION["result"]) ?>
         <?php else : ?>
             <form action="calculate_tax.php" method="POST">
                 <div class="form-title">
-                    <h2>Taxxy: Tax Calculator.</h2>
+                    <h2>Taxxy: Tax Calculator</h2>
                     <p>Enter salary to calculate taxes instantly!</p>
                 </div>
                 <div class="form-input">
