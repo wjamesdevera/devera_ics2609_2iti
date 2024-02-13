@@ -38,8 +38,8 @@ class TaxCalculator
         return array(
             "monthly_salary" => $this->getMonthlySalary(),
             "annual_salary" => $this->getAnnualSalary(),
-            "annual_tax" => $this->getAnnualSalary(),
-            "monthly_tax" => $this->getAnnualSalary(),
+            "annual_tax" => $this->getAnnualTax(),
+            "monthly_tax" => $this->getMonthlyTax(),
         );
     }
 
