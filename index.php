@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
@@ -11,6 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Taxxy: Tax Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -18,7 +17,7 @@ session_start();
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="https://api.iconify.design/solar:calculator-bold.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="./static/css/android-chrome-512x512.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top mr-5">
                     Taxxy: Tax Calculator
                 </a>
             </div>
@@ -86,6 +85,9 @@ session_start();
         </div>
         <div class="">
             <h3>Tax Computation</h3>
+            <table class="table">
+
+            </table>
         </div>
     </main>
     <footer class="container mt-auto p-2 text-center">
