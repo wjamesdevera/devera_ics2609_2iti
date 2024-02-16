@@ -15,7 +15,7 @@ session_start();
 
 <body class="d-flex flex-column min-vh-100">
     <header class="mb-5">
-        <nav class="navbar bg-body-tertiary">
+        <nav class="navbar bg-info-subtle">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="./static/css/android-chrome-512x512.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top mr-5">
@@ -25,66 +25,70 @@ session_start();
         </nav>
     </header>
     <main class="container">
-        <div class="d-flex justify-content-center align-items-center mb-5">
+        <div class="">
             <?php if (isset($_SESSION['result'])) : ?>
                 <?php
                 require_once 'TaxCalculator.php';
                 $result = $_SESSION["result"];
                 ?>
-                    <div class="border rounded p-4">
-                        <table class="table table-borderless">
-                            <thead>
-                                <tr class="">
-                                    <th class="col" colspan="3">Income Tax Calculation</th>
-                                </tr>
-                                <tr>
-                                    <th class="col"></th>
-                                    <th class="col">Monthly</th>
-                                    <th class="col">Annually</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                                <tr>
-                                    <th class="col">Salary</th>
-                                    <td class="col"><?= '&#8369; ' . $result['monthly_salary'] ?></td>
-                                    <td class="col"><?= '&#8369; ' . $result['annual_salary'] ?></td>
-                                </tr>
-                                <tr class="table-success">
-                                    <th class="col">Estimated Tax</th>
-                                    <td class="col"><?= '&#8369; ' . $result['monthly_tax'] ?></td>
-                                    <td class="col"><?= '&#8369; ' . $result['annual_tax'] ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                <!-- <?php // unset($_SESSION["result"]) ?> -->
+                <div class="border rounded p-4 mb-5">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr class="">
+                                <th class="col" colspan="3">
+                                    <h5>Income Tax Calculation</h5>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="col"></th>
+                                <th class="col">Monthly</th>
+                                <th class="col">Annually</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr>
+                                <th class="col">Salary</th>
+                                <td class="col"><?= '&#8369; ' . $result['monthly_salary'] ?></td>
+                                <td class="col"><?= '&#8369; ' . $result['annual_salary'] ?></td>
+                            </tr>
+                            <tr class="table-success">
+                                <th class="col">Estimated Tax</th>
+                                <td class="col"><?= '&#8369; ' . $result['monthly_tax'] ?></td>
+                                <td class="col"><?= '&#8369; ' . $result['annual_tax'] ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <?php unset($_SESSION["result"]) ?> -->
             <?php else : ?>
-                <form action="calculate_tax.php" method="POST" class="tax-calculator-form border border-light-subtle p-4 rounded">
-                    <div class="">
-                        <h2>Tax Calculator</h2>
-                        <p>Enter monthly salary to calculate taxes instantly!</p>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">&#8369;</span>
-                        <input class="form-control" type="number" name="monthly_salary" placeholder="Monthly Salary" autocomplete="off" autocapitalize="off" required>
-                    </div>
-                    <fieldset class="mb-3">
-                        <legend>
-                            Type
-                        </legend>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="bi_monthly" id="monthly" value="monthly" checked>
-                            <label class="form-check-label" for="monthly">Monthly</label>
+                <div class="d-flex justify-content-center align-items-center mb-5">
+                    <form action="calculate_tax.php" method="POST" class="tax-calculator-form border border-light-subtle p-4 rounded shadow-sm">
+                        <div class="">
+                            <h2>Tax Calculator</h2>
+                            <p>Enter monthly salary to calculate taxes instantly!</p>
                         </div>
-                        <div class="form-ech">
-                            <input class="form-check-input" type="radio" name="bi_monthly" id="bi-monthly" value="bi-monthly">
-                            <label class="form-check-label" for="bi-monthly">Bi-Monthly</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">&#8369;</span>
+                            <input class="form-control" type="number" name="monthly_salary" placeholder="Monthly Salary" autocomplete="off" autocapitalize="off" required>
                         </div>
-                    </fieldset>
-                    <div class="">
-                        <input class="btn btn-primary" type="submit" value="Submit">
-                    </div>
-                </form>
+                        <fieldset class="mb-3">
+                            <legend>
+                                Type
+                            </legend>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="bi_monthly" id="monthly" value="monthly" checked>
+                                <label class="form-check-label" for="monthly">Monthly</label>
+                            </div>
+                            <div class="form-ech">
+                                <input class="form-check-input" type="radio" name="bi_monthly" id="bi-monthly" value="bi-monthly">
+                                <label class="form-check-label" for="bi-monthly">Bi-Monthly</label>
+                            </div>
+                        </fieldset>
+                        <div class="">
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
             <?php endif ?>
         </div>
         <div>
@@ -136,4 +140,5 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
+
 </html>
