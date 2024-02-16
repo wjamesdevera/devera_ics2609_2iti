@@ -101,7 +101,7 @@ class TaxCalculator
 
     public function setMonthlySalary($monthlySalary): void
     {
-        $this->monthlySalary = $monthlySalary;
+        $this->monthlySalary = ($this->isBiMonthly ? $monthlySalary * 2 : $monthlySalary);
     }
 
     private function setAnnualSalary($monthlySalary): void
