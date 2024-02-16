@@ -15,9 +15,9 @@ session_start();
 
 <body class="d-flex flex-column min-vh-100">
     <header class="mb-5">
-        <nav class="navbar bg-info-subtle">
+        <nav class="navbar bg-primary-subtle">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand fw-semibold" href="#">
                     <img src="./static/css/android-chrome-512x512.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top mr-5">
                     Taxxy: Tax Calculator
                 </a>
@@ -36,7 +36,7 @@ session_start();
                         <thead>
                             <tr class="">
                                 <th class="col" colspan="3">
-                                    <h5>Income Tax Calculation</h5>
+                                    <h5 class="fw-bold">Income Tax Calculation</h5>
                                 </th>
                             </tr>
                             <tr>
@@ -58,13 +58,16 @@ session_start();
                             </tr>
                         </tbody>
                     </table>
+                    <div class="">
+                        <a href="" class="btn btn-primary">Return</a>
+                    </div>
                 </div>
                 <!-- <?php unset($_SESSION["result"]) ?> -->
             <?php else : ?>
                 <div class="d-flex justify-content-center align-items-center mb-5">
                     <form action="calculate_tax.php" method="POST" class="tax-calculator-form border border-light-subtle p-4 rounded shadow-sm">
                         <div class="">
-                            <h2>Tax Calculator</h2>
+                            <h4>Tax Calculator</h4>
                             <p>Enter monthly salary to calculate taxes instantly!</p>
                         </div>
                         <div class="input-group mb-3">
@@ -92,7 +95,7 @@ session_start();
             <?php endif ?>
         </div>
         <div>
-            <h2>Income Tax Rate Table in 2023</h2>
+            <h4>Income Tax Rate Table in 2023</h4>
             <p>The new Income Tax Table applicable from 2023 onwards can be seen below:</p>
             <table class="table table-bordered rounded">
                 <thead>
