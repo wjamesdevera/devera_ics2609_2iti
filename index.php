@@ -107,19 +107,19 @@ session_start();
                     </tr>
                     <tr>
                         <td class="col">Over PHP250,000.00 but not over PHP400,000.00</td>
-                        <td class="col">15% of the excess over PHP250,000.00</td>
+                        <td class="col">20% of the excess over PHP250,000.00</td>
                     </tr>
                     <tr>
                         <td class="col">Over PHP400,000.00 but not over PHP800,000.00</td>
-                        <td class="col">PHP22,500.00 + 20% of the excess over PHP400,000.00</td>
+                        <td class="col">PHP22,500.00 + 25% of the excess over PHP400,000.00</td>
                     </tr>
                     <tr>
                         <td class="col">Over PHP800,000.00 but not over PHP2,000,000.00</td>
-                        <td class="col">PHP102,500.00 + 25% of the excess over PHP800,000.00</td>
+                        <td class="col">PHP102,500.00 + 30% of the excess over PHP800,000.00</td>
                     </tr>
                     <tr>
                         <td class="col">Over PHP2,000,000.00 but not over PHP8,000,000.00</td>
-                        <td class="col">PHP402,500.00 + 30% of the excess over PHP2,000,000.00</td>
+                        <td class="col">PHP402,500.00 + 32% of the excess over PHP2,000,000.00</td>
                     </tr>
                     <tr>
                         <td class="col">Over PHP8,000,000.00</td>
