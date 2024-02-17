@@ -9,7 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Taxxy: Tax Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./static/css/main.css">
 </head>
 
@@ -18,7 +18,7 @@ session_start();
         <nav class="navbar bg-primary-subtle">
             <div class="container-fluid">
                 <a class="navbar-brand fw-semibold" href="#">
-                    <img src="./static/css/android-chrome-512x512.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top mr-5">
+                    <img src="./static/media/android-chrome-512x512.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top mr-5">
                     Taxxy: Tax Calculator
                 </a>
             </div>
